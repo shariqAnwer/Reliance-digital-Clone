@@ -1,0 +1,190 @@
+<%- include("_header", {title: category.name, cssLink: "/css/prodcatalogfromnav.css"}) %>
+<!-- <link rel="stylesheet" href="/css/header.css"> -->
+
+    <div id="main">
+        <div id="topCarasoul">
+            <img id="carasolimg" src="https://www.reliancedigital.in/medias/Samsung-Galaxy-Z-Fold3-Flip3-5G-CLP-Banner-10-01-2022.jpg?context=bWFzdGVyfGltYWdlc3wxNjQxMjV8aW1hZ2UvanBlZ3xpbWFnZXMvaDFiL2g4NC85NzU0MDU2MTYzMzU4LmpwZ3xmMzk2ZWEzOWIwOTI2ODk1YjNiNzY1MGI2MDY5ZmJlODJmZTFlMGI4NjYwYjU1ZjE0OTg1YzczMTllYzhiMDk4" alt="">
+        </div>
+        
+        <!-- L1 Break -->
+        <div id="showingPageName">
+            <a href="/">
+                <img src="https://www.pngkey.com/png/full/823-8236029_senior-care-icon-home-page-icon-grey.png" alt="">
+            </a>
+            <img src="https://www.freeiconspng.com/uploads/right-arrow-icon-27.png" alt="">
+
+            <span><%=category.name%></span>
+
+        </div>
+        
+        <!-- L1 Break -->
+        <div id="quickGlance">
+            <div id="qgLeft">
+                <div>
+                    <div class="smallHeading">
+
+                        <div><%=images[0].desc%></div>
+
+                        <div>|</div>
+                        <div>View All</div>
+                    </div>
+                    <div class="displayProds">
+                        <div class="leftbtn">
+                            <button id="scrollleftbtn1"><img src="https://cdn2.iconfinder.com/data/icons/font-awesome/1792/angle-left-512.png" alt=""></button>
+                        </div>
+                        <div id="qglpd1" class="qgleftprodsouterDiv">
+
+                            
+                            <% let imgs = images[0].imageUrls;
+                            for(let imgurl of imgs) {%>
+                                
+                            <div class="qgLeftprods">
+                                
+                                <img src="<%=imgurl%>" alt="">
+                            </div>
+                            <%}%>
+                            
+
+                        </div>
+                        <div id="scrollrightbtn1"" class="rightbtn">
+                            <button><img src="https://cdn2.iconfinder.com/data/icons/font-awesome/1792/angle-right-512.png" alt=""></button>
+                        </div>
+                        
+
+                    </div>    
+                </div>
+                <div>
+                    <div class="smallHeading">
+
+                        <div><%=images[1].desc%></div>
+
+                        <div>|</div>
+                        <div>View All</div>
+                    </div>
+                    <div class="displayProds">
+                        <div class="leftbtn">
+                            <button id="scrollleftbtn2"><img src="https://cdn2.iconfinder.com/data/icons/font-awesome/1792/angle-left-512.png" alt=""></button>
+                        </div>
+                        <div id="qglpd2" class="qgleftprodsouterDiv">
+
+                            <% imgs = images[1].imageUrls; %>
+                            <% for(let imgurl of imgs) { %>
+                            <div class="qgLeftprods">
+                                <img src="<%=imgurl%>" alt="">
+                            </div>
+                            <% } %>
+
+                        </div>
+                        <div id="scrollrightbtn2" class="rightbtn">
+                            <button><img src="https://cdn2.iconfinder.com/data/icons/font-awesome/1792/angle-right-512.png" alt=""></button>
+                        </div>
+                    </div> 
+                </div>
+                <div>
+                    <div class="smallHeading">
+                        <div>SHOP BY BRANDS</div>
+                        <div>|</div>
+                        <div>View All</div>
+                    </div>
+                    <div class="displayProds">
+                        <div class="leftbtn">
+                            <button id="scrollleftbtn3"><img src="https://cdn2.iconfinder.com/data/icons/font-awesome/1792/angle-left-512.png" alt=""></button>
+                        </div>
+                        <div id="qglpd3" class="qgleftprodsouterDiv">
+                            <% imgs = images[2].imageUrls; %>
+                            <% for(let i=0; i<10;i++) { %>
+                            <div class="qgLeftprods">
+                                <img src="<%=imgs[i]%>" alt="">
+                            </div>
+                            <% } %>
+                        </div>
+                        <div  class="rightbtn">
+                            <button id="scrollrightbtn3"><img src="https://cdn2.iconfinder.com/data/icons/font-awesome/1792/angle-right-512.png" alt=""></button>
+                        </div>
+                    </div>
+                     
+                </div>
+            </div>
+            <!-- L2 Break -->
+            <div id="qgRight">
+                <span>FROM OUR RESOURCE CENTER</span>
+                <div>
+                    <h3>Vivo V23 and V23 Pro – A new year, a new beginning</h3>
+                    <img src="https://i.cdn.newsbytesapp.com/images/l242_48351641370148.jpg" alt="">
+                </div>
+                <div>
+                    <h3>Samsung Galaxy M52 5G – High-end smartphone traits</h3>
+                    <img src="https://www.91-cdn.com/hub/wp-content/uploads/2021/09/Samsung-Galaxy-M52-5G-2-1.jpg" alt="">
+                </div>
+                <div>
+                    <h3>The Apple iPhone 13 pack arrives!</h3>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGmVAflXfqGYrqrVnslcGiZKRYCWVgUQ7XoFGItfU2FdZVwU83kw-dG9orFMlEn_LGCdM&usqp=CAU" alt="">
+                </div>
+                <div>
+                    <h3>OnePlus Nord CE 5G – True to the Core</h3>
+                    <img src="https://www.reliancedigital.in/wp-content/uploads/2021/06/cover2_OnePlus_Nord_CE.jpg" alt="">
+                </div>
+            </div>
+        </div>
+
+        <!-- L1 Break -->
+        <div id="phonesDisplayBigDiv">
+
+            <%for (row of prodrows){%>
+    
+            <div>
+                <div class="smallHeading">
+                    <div><%=row.rowheading%></div>
+
+                    <div>|</div>
+                    <div>View All</div>
+                </div>
+                <div class="displayProds">
+                    <div class="leftbtn"> 
+                        <button id="scrollleftbtn4"><img src="https://cdn2.iconfinder.com/data/icons/font-awesome/1792/angle-left-512.png" alt=""></button>
+                    </div>
+
+                    
+                    <div id="pdbdd1" class="showPhonesDiv">
+                        <%for(prod of row.products){%>
+                        <div  class="phoneDisp">
+                            <div class="imgdiv">
+                                <a href="/product/<%=prod._id%>">
+                                    <img src="<%=prod.main_img%>" alt="">
+                                </a>
+                            </div>
+                            <h3> <%=prod.name%></h3>
+                            <p>Offer Price: <span class="price">₹<%=prod.price%></span></p>
+                            <%if(prod.MRP){%>
+                            <p>M.R.P: <span class="linethrough">₹<%=prod.MRP%></span></p>
+                            <%}%>
+                            <%if(prod.discount){%>
+                            <p>You Save: <%=prod.discount%>%</p>
+                            <%}%>
+                            <%if(prod.discount){%>
+                            <div class="offersavail">OFFERS AVAILABLE</div>
+                            <%}%>
+                        </div>
+                        <%}%>
+
+                        
+                        
+                    </div>
+                    <div class="rightbtn">
+                        <button id="scrollrightbtn4"><img src="https://cdn2.iconfinder.com/data/icons/font-awesome/1792/angle-right-512.png" alt=""></button>
+                    </div>
+                </div>
+            </div>
+
+            <%}%>
+        <div id="bottomsection">
+            
+        </div>
+        
+
+    </div>
+    <%- include("_footer") %>
+
+
+<script src="/js/prodcatalogfromnav.js"></script>
+

@@ -1,0 +1,116 @@
+<%- include("_header", {title: searchTerm, cssLink: "/css/productFromSearch.css"}) %>
+    <main>
+      <div id="main">
+        <div id="slideshow">
+          <!-- carousal start -->
+  
+          <div id="topCarasoul">
+            <img
+              id="carasolimg"
+              src="https://www.reliancedigital.in/medias/Samsung-Galaxy-Z-Fold3-Flip3-5G-CLP-Banner-10-01-2022.jpg?context=bWFzdGVyfGltYWdlc3wxNjQxMjV8aW1hZ2UvanBlZ3xpbWFnZXMvaDFiL2g4NC85NzU0MDU2MTYzMzU4LmpwZ3xmMzk2ZWEzOWIwOTI2ODk1YjNiNzY1MGI2MDY5ZmJlODJmZTFlMGI4NjYwYjU1ZjE0OTg1YzczMTllYzhiMDk4"
+              alt=""
+            />
+          </div>
+  
+          <!-- carousal end -->
+        </div>
+  
+        <div id="navbar">
+          <a href="/">
+            <img
+              src="https://www.pngkey.com/png/full/823-8236029_senior-care-icon-home-page-icon-grey.png"
+              alt=""
+          /></a>
+          <img
+            src="https://www.freeiconspng.com/uploads/right-arrow-icon-27.png"
+            alt=""
+          />
+          <span id="searchterm"><%= searchTerm %></span>
+        </div>
+  
+        <div id="lowerDiv">
+          <div id="sidebar">
+            <h4>Filters</h4>
+            <hr />
+            <h4>Brand</h4>
+            <div id="brand">
+              <%for(brand in brands) {%>
+                <div>
+                  <% if(brand==checked_brand) {%>
+                  <input type="checkbox" checked class="brand" value = "<%=brand%>"name="<%=brand%>" id="<%=brand%>">
+                  <label for="<%=brand%>"><%=brand%></label>
+                  <% } else { %>
+                    <input type="checkbox" class="brand" value = "<%=brand%>"name="<%=brand%>" id="<%=brand%>">
+                    <label for="<%=brand%>"><%=brand%></label>
+                    <%}%>
+                </div>
+                
+                <% } %>
+            </div>
+            <hr />
+            <h4>Category</h4>
+            <div id="category">
+              <%for(cat of categories) {%>
+                <div>
+                  <input type="checkbox" name="<%=cat.name%>" id="<%=cat.name%>">
+                  <label for="<%=cat.name%>"><%=cat.name%></label>
+                </div>
+                
+                
+                <% } %>
+            </div>
+            <hr />
+            
+          </div>
+  
+          <div id="rightPanal">
+            <div>
+              <h2 id="searchedterm"><%= searchTerm %></h2>
+              <div id="sortBy">
+                <span>Sort by:</span>
+                <select id="selectFilter">
+                  <option value="">Relevance</option>
+                  <option value="asc">Name(A-Z)</option>
+                  <option value="desc">Name(Z-A)</option>
+                  <option value="low">Price(Low-High)</option>
+                  <option value="high">Price(High-Low)</option>
+                </select>
+              </div>
+            </div>
+  
+            <div id="container">
+              <% if(products) {%>
+              <%for(prod of products) { %>
+              <div class="product">
+                <div class="prodimg">
+                  <a href="product/<%=prod._id%>">
+                    <img src="<%=prod.main_img%>" alt="">
+                  </a>
+                </div>
+                <div class="proddetails">
+                  <div class="prodname"><h3><%=prod.name%></h3></div>
+                  <div class="prodprice">
+                    <div>₹<%=prod.price%></div>
+                    <% if(prod.MRP) {%>
+                    <div class="mrp">₹<%=prod.MRP%></div>
+                    <%}%>
+                    <% if(prod.discount) {%>
+                    <div class="discount"><%=prod.discount%>%(₹<%=prod.MRP-prod.price%>)</div>
+                    <%}%>
+                  </div>
+                  <% if(prod.discount) {%>
+                  <div class="offer">Offer available</div>
+                  <%}%>
+                </div>
+              </div>
+              <% } %>
+              <%}%>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <%- include("_footer") %>
+  <script src="/js/productFromSearch.js"></script>
+ 
+

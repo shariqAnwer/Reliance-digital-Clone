@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reliance Digital Cart</title>
+    <link rel="stylesheet" href="./styles/footer.css">
+    <link rel="stylesheet" href="./styles/header.css">
+    <link rel="stylesheet" href="/css/cart.css">
+</head>
+<body>
+    <header>
+
+      <%- include("_header", {title: "Home", cssLink: "/css/index.css"}) %>
+
+
+    </header>
+
+
+    <div id="main">
+        <div id="left">
+            <h3>My Cart (<span id="cartLength"><%=cart.length%></span>)</h3>
+            <div id="container">
+                <% for (prod of cart) { %>
+                    <div class="box1">
+                        <div class="topDiv">
+                            <div>
+                                <div>
+                                    <img src="<%=prod.product.main_img%>" alt="">
+                                </div>
+                                <div class="countDiv">
+                                    <button>+</button>
+                                    <div class="quantity">1</div>
+                                    <button>-</button>
+                                </div>
+                            </div>
+                            <div>
+                                <h3><%=prod.product.name%></h3>
+                            </div>
+                            <div>
+                                <p>₹<%=prod.product.price%></p>
+                                <%if (prod.product.MRP){ %>
+                                <p>MRP: ₹<span class="linethrough"><%=prod.product.MRP%></span>Inclusive of all taxes</p>
+                                <%}%>
+                                <%if (prod.product.discount){ %>
+                                <p>You save: <%=prod.product.discount%>%(₹<%=prod.product.MRP-prod.product.price%>)</p>
+                                <%}%>
+                                <p class="greentext">Free Shipping</p>
+                                <p class="bluetext">*Delivery assurance is subject to our delivery locations staying open as per govt. regulations</p>
+                            </div>
+                        </div>
+                        <div class="bottomDiv">
+                            <a href="cart/delete/<%=prod._id%>"> <button>Remove</button></a>
+                            <button>Move to Wishlist</button>
+                        </div>
+                        
+                    </div>
+                    <%}%>
+            </div>
+        </div>
+
+        <div id="right">
+            <div id="checkout">
+                <div id="btn">
+                    <button id="chkt">CHECKOUT</button>
+                    
+                    <div id="details">
+                        <input type="text" id="Coupon" placeholder="Coupon Code">
+                        <button>Apply</button>
+                        <h4>PRICE DETAILS</h4>
+                        <div class="flex">
+                            <p>Price</p>
+                           
+                            <%let sum =0
+                            for(let i =0; i<cart.length; i++){
+                                sum+=cart[i].product.price;
+                            }%>
+                            
+                            
+                            <p><%=sum%></p>
+                        </div>
+                        <div class="flex">
+                            <p>Delivery Charges</p>
+                            <p>Free</p>
+                        </div>
+                        
+                        <hr>
+                        <span><h4 id="totamount">AMOUNT PAYABLE</h4> <b style="color: red; letter-spacing: 1px; font-size: 30px;"><%=sum%>/-</b> </span>
+                    </div>
+                    <div>
+                        <p>Safe and Secure Payments. Easy returns. 100% Authentic products.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+
+    <footer>
+      <%- include("_footer", {title: "Home", cssLink: "../public/css/footer.css"}) %>
+    </footer>
+</body>
+</html>
+
+
+
+<script>
+
+    import headerFunctionality from "./scripts/header.js"
+    headerFunctionality()
+    
+    
+    function openImg(){
+        var image = document.getElementById('getsrc');
+        var source = image.src;
+        window.open(source);
+    }
+    
+    
+    document.getElementById("buyNow").addEventListener("click", function() {
+        
+        let pin = document.querySelector("#pinCode").value
+        
+        
+        if(pin.length === 6){
+          let pincheck = document.getElementById('pinalert')
+          pincheck.style.display = 'none'
+          window.location.href = "cart.html"
+        }
+        else{
+          let pincheck = document.getElementById('pinalert')
+          pincheck.style.display = 'block'
+          
+        }
+      });
+    
+    
+    
+      
+    
+    
+    </script>
+
+<script>
+  
+
+    // let res = await fetch("http://127.0.0.1:3000/api/products/3");
+    
+    // let prod = await res.json();
+    // console.log(prod);
+    
+    // localStorage.setItem("try",JSON.stringify(prod))
+    
+    // let temp = JSON.parse(localStorage.getItem("try"))
+    
+    let check = JSON.parse(localStorage.getItem("selected_product"))
+    
+    let res = await fetch(`http://127.0.0.1:3000/api/products/${check}`);
+    let temp = await res.json();
+    
+    // let cart = JSON.parse(localStorage.getItem("relianceCart")) || []
+    //setting data in local storage for cart
+    var prodData={
+        name:temp.name,
+        image: temp.image,
+        price:temp.price
+    }
+    
+    document.getElementById("addtoCart").addEventListener("click", function() {
+        console.log("Yes");
+        // cart.push(prodData)
+        localStorage.setItem("relianceCart",JSON.stringify(prodData));
+        // window.location.href = "cart.html"
+        
+      });
+    
+    //Page Tiltle dynamic
+    document.title = 'Buy'+" "+temp.name
+    
+    //trial
+    
+    //trial
+    
+    //sectionbar names
+    let scbrand = document.getElementById('brandNamesc')
+    scbrand.innerText = temp.brand
+    let scname = document.getElementById('deviceNamesc')
+    scname.innerText = temp.name
+    
+    //Android device images
+    document.getElementById('myimage').src= temp.image
+    
+    //key feature details
+    let name = document.getElementById('deviceName')
+    name.innerText = temp.name
+    let price = document.getElementById('mainPrice')
+    price.innerText = temp.price
+    let display = document.getElementById('display')
+    display.innerText = temp.display
+    let camera = document.getElementById('camera')
+    camera.innerText = temp.camera
+    let processor = document.getElementById('processor')
+    processor.innerText = temp.processor
+    let ossystem = document.getElementById('ossystem')
+    ossystem.innerText = temp.ossystem 
+    
+    // Details under images
+    let processors = document.getElementById('processors')
+    processors.innerText = temp.processor
+    let ossystems = document.getElementById('ossystems')
+    ossystems.innerText = temp.ossystem 
+    let cameras = document.getElementById('cameras')
+    cameras.innerText = temp.camera
+    
+    //Detailed Specification starts
+    let color = document.getElementById('color')
+    color.innerText = temp.color
+    let brand = document.getElementById('brand')
+    brand.innerText = temp.brand
+    let memory = document.getElementById('memory')
+    memory.innerText = temp.memory
+    let processordet = document.getElementById('processordet')
+    processordet.innerText = temp.processor
+    let osdet = document.getElementById('osdet')
+    osdet.innerText = temp.ossystem 
+    let ram = document.getElementById('ram')
+    ram.innerText = temp.ram 
+    
+    
+    //code for changing mobile images on click
+    const allImage = document.querySelectorAll('.smallimgDiv div img')
+    
+    const imgContain = document.querySelector('.deviceimage');
+    
+    window.addEventListener('DOMContentLoaded', () => {
+        allImage[0].parentElement.classList.add('active');
+    })
+    
+    allImage.forEach((image) => {
+        image.addEventListener('click', () =>{
+            console.log(image.src)
+            imgContain.querySelector('img').src = image.src;
+        });
+    });
+    
+    
+        
+    
+    
+    </script>
