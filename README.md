@@ -25,5 +25,8 @@ This project was built by 6 members in a span of 5 days
   - dotenv
   - nodemon
 
-## License
-ISC
+## Contributing
+
+Contributions are always welcome!You can contribute to this project to make this more functional.
+
+Thank You.
